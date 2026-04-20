@@ -1,0 +1,141 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>行车安全监测系统</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+  <div class="dot" id="live-dot"></div>
+  <h1>行车安全监测系统</h1>
+</header>
+
+<div class="layout">
+
+  <!-- 视频区 -->
+  <div class="video-wrap">
+    <img id="video-feed" src="/video_feed" alt="video">
+    <canvas id="calib-canvas"></canvas>
+    <div class="alert-banner" id="alert-banner">ALERT</div>
+  </div>
+
+  <!-- 调试视图 -->
+  <div id="debug-wrap" style="display:none">
+    <img id="debug-feed" alt="debug">
+  </div>
+
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+
+    <!-- 实时状态 -->
+    <div class="panel">
+      <div class="panel-title">实时状态
+        <label class="toggle-label">
+          <input type="checkbox" id="debug-toggle">
+          <span class="toggle-track"><span class="toggle-thumb"></span></span>
+          <span class="toggle-text">调试视图</span>
+        </label>
+      </div>
+      <div class="stat-grid">
+
+        <div class="stat-card">
+          <div class="stat-label">车速</div>
+          <div>
+            <span class="stat-value" id="stat-speed">--</span>
+            <span class="stat-unit">km/h</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-label">转向角</div>
+          <div>
+            <span class="stat-value" id="stat-angle">--</span>
+            <span class="stat-unit">deg</span>
+          </div>
+        </div>
+
+        <div class="stat-card full">
+          <div class="stat-label">车道线</div>
+          <span class="stat-badge off" id="stat-lanes">检测中…</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 阈值配置 -->
+    <div class="panel">
+      <div class="panel-title">预警阈值</div>
+      <form id="config-form">
+        <div class="form-row">
+          <label>超速阈值 km/h</label>
+          <input type="number" id="cfg-speed" value="80" min="1" step="1">
+        </div>
+        <div class="form-row">
+          <label>急转弯阈值 °</label>
+          <input type="number" id="cfg-angle" value="15" min="1" step="1">
+        </div>
+        <div class="form-row">
+          <label>冷却时间 s</label>
+          <input type="number" id="cfg-cooldown" value="3" min="0.5" step="0.5">
+        </div>
+        <button type="submit" class="btn">应用</button>
+      </form>
+    </div>
+
+    <!-- 视频源 -->
+    <div class="panel">
+      <div class="panel-title">视频源</div>
+      <form id="source-form">
+        <div class="form-row">
+          <label>路径 / ID</label>
+          <input type="text" id="src-input" placeholder="0 或文件路径">
+        </div>
+        <button type="submit" class="btn secondary">切换</button>
+      </form>
+    </div>
+
+    <!-- 透视标定 -->
+    <div class="panel">
+      <div class="panel-title">透视标定</div>
+      <button class="btn secondary" id="btn-calibrate">进入标定</button>
+      <div id="calib-controls" style="display:none">
+        <p class="calib-hint">拖拽画面上的控制点调整梯形区域</p>
+        <div class="calib-preview-wrap">
+          <div class="calib-preview-label">鸟瞰预览</div>
+          <img id="calib-preview" alt="preview">
+        </div>
+        <div class="calib-actions">
+          <button class="btn" id="btn-save-calib">保存</button>
+          <button class="btn secondary" id="btn-cancel-calib">取消</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 预警历史 -->
+    <div class="history-wrap">
+      <div class="panel-title">预警历史</div>
+      <table>
+        <thead>
+          <tr>
+            <th>时间</th>
+            <th>类型</th>
+            <th>速度</th>
+            <th>角度</th>
+          </tr>
+        </thead>
+        <tbody id="alert-tbody">
+          <tr><td colspan="4" style="color:var(--muted);padding:12px 0;">暂无记录</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </aside>
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
