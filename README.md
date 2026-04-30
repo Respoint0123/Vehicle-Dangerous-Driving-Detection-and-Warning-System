@@ -25,8 +25,6 @@
 │   │   └── style.css
 │   └── templates/
 │       └── index.html
-├── visualize_pipeline.py    # 输出 8 步流水线可视化图（单帧）
-└── build_predefense_ppt.py  # 预答辩 PPT 生成脚本
 ```
 
 ## 快速开始
