@@ -55,3 +55,9 @@ htmlcov/
 
 # Project specific
 dangerous_driving.db
+
+# Thesis documents (keep locally, exclude from repo)
+改进建议*.md
+论文初稿*
+build_predefense_ppt.py
+visualize_pipeline.py
