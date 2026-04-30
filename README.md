@@ -1,4 +1,3 @@
-![Stone Badge](https://stone.professorlee.work/api/stone/Respoint0123/Vehicle-Dangerous-Driving-Detection-and-Warning-System)
 # Vehicle Dangerous Driving Detection and Warning System
 
 基于单目摄像头的车辆危险驾驶检测与预警系统。通过透视变换 + 滑动窗口检测车道线，结合 LK 光流法估算车速，利用消失点偏移判断急转弯，实时输出预警信息。
@@ -77,3 +76,6 @@ python warp_calibrator.py --video /path/to/video.mp4
 - Flask >= 2.3
 - OpenCV >= 4.8
 - NumPy >= 1.24
+
+##Stone Badge 
+![Stone Badge](https://stone.professorlee.work/api/stone/Respoint0123/Vehicle-Dangerous-Driving-Detection-and-Warning-System)
